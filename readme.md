@@ -14,12 +14,21 @@ The current data format of the file is JSON, with the following syntax.
 | Command | Parameters | Description |
 |---------|------------|-------------|
 | Capture | (None) | Capture a keyframe for the current rotation, location, and scale of the selected object at the currently indexed frame. |
-| FrameCount | Number | Set the total count of frames in the Blender animation. |
-| FrameIndex | Number | Set the current frame at which to insert a keyframe. |
-| SelectObject | String | Select the named object in Blender. Must match an existing object in the tree of the open file. |
-| Rotate | 3D Vector | Rotate the selected object by the X, Y, Z Euler amount. |
-| Translate | 3D Vector | Move the selected object by the X, Y, Z distance. |
-| Scale | 3D Vector | Scale the selected object by the X, Y, Z amount. |
+| FrameCount | Value | Set the total count of frames in the Blender animation. |
+| FrameIndex | Value | Set the current frame at which to insert a keyframe. |
+| SelectObject | Value | Select the named object in Blender. Must match an existing object in the tree of the open file. |
+| Rotate | X, Y, Z | Rotate the selected object by the X, Y, Z Euler amount. |
+| Translate | X, Y, Z | Move the selected object by the X, Y, Z distance. |
+| Scale | X, Y, Z | Scale the selected object by the X, Y, Z amount. |
+
+## Data Flow Requirement
+When setting the keyframe for a particular object, use this general approach.
+ - FrameIndex
+ - SelectObject
+ - \[Rotate|Translate|Scale\] ...
+ - Capture
+
+See the following example for a more practical representation.
 
 ## Example
 Following is example data that can be fed to the ImportKeyframes.py script.
